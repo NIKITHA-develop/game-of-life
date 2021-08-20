@@ -1,7 +1,12 @@
 
 pipeline {
    agent any
-   
+   environment {
+
+      sonar_url = 'http://172.31.62.113:9000/'
+      sonar_username = 'admin'
+      sonar_password = 'admin'
+ }
    tools {
       // Install the Maven version configured as "M3" and add it to the path.
 	  jdk 'java8'
