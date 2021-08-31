@@ -51,5 +51,13 @@ pipeline {
 	
 	}
 	}
+	stage ('Docker Build') {
+         steps {
+           sh '''
+           cd ${WORKSPACE}
+	   docker build -t nikitha19/test:v1 .
+           '''
+         }
+	}
   }
  }
