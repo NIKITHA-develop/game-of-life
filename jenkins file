@@ -34,7 +34,7 @@ pipeline {
          }
 	}
 	stage ('Sonarqube Analysis'){
-           steps {
+           steps {""
            withSonarQubeEnv('sonarqube') {
            sh '''
            mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=false
@@ -54,10 +54,12 @@ pipeline {
 	stage ('Docker Build') {
          steps {
            sh '''
+	   docker login -u="$REGISTRY_URL" -p="$REGISTRY_USER"
            cd ${WORKSPACE}
 	   docker build -t nikitha19/test:v1 .
            '''
          }
 	}
+	
   }
  }
