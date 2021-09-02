@@ -59,5 +59,14 @@ pipeline {
 	'''
 	}
 	}
+	stage('Docker publish') {
+    steps {
+    script {
+        withDockerRegistry([ credentialsId: "Docker-cred", url: "https://docker.io/" ]) {
+         sh 'docker push docker.io/nikitha19/test:v1'
+   }
+        }
+      }
+     }
 }
 }
