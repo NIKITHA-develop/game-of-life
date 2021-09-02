@@ -52,11 +52,10 @@ pipeline {
 	}
 	}
 	stage ('Docker Build') {
+	agent any
 	steps {
 	sh '''
-	sudo chmod 666 /var/run/docker.sock
-	sudo -S <cmd>
-	docker build -t nikitha19/test:v1 .
+	docker build -t nikitha19/test:v1 /var/lib/jenkins/workspace/main-pipeline/
 	'''
 	}
 	}
