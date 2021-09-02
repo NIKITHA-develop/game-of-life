@@ -63,7 +63,7 @@ pipeline {
     steps {
     script {
         withDockerRegistry([ credentialsId: "Docker-cred", url: "https://docker.io/" ]) {
-         sh 'docker push nikitha19/test:v1'
+         sh 'docker push nikitha19/test:v1 .'
    }
         }
       }
