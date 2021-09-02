@@ -63,7 +63,6 @@ pipeline {
     steps {
     script {
         withDockerRegistry([ credentialsId: "Docker-cred", url: "https://docker.io/" ]) {
-	 sh 'sudo docker tag nikitha19/test:v1 /var/lib/jenkins/workspace/main-pipeline/ nikitha19/test:secondimagepush'
          sh 'docker push docker.io/nikitha19/test:v1 /var/lib/jenkins/workspace/main-pipeline/'
    }
         }
