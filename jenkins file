@@ -62,8 +62,8 @@ pipeline {
 	stage('Docker publish') {
     steps {
     script {
-        withDockerRegistry([ credentialsId: "Docker-cred", url: "https://docker.io/" ]) {
-         sh 'docker push nikitha19/test:v1 .'
+        withDockerRegistry(registry:[ credentialsId: 'Docker-cred']) {
+         sh 'docker push nikitha19/test:v1'
    }
         }
       }
