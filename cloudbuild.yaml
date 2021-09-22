@@ -10,7 +10,7 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
   spec:
-  containerConcurrency: 80
+  # containerConcurrency: 80
   # timeoutSeconds: 300
   containers:
   - image: gcr.io/$PROJECT_ID/game-of-life:1.0
