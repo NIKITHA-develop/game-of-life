@@ -1,11 +1,16 @@
 steps:
-- name: google/cloud-sdk:alpine
-  id: Clone repo
-  entrypoint: git
-  args: ['clone', 'https://github.com/NIKITHA-develop/game-of-life.git']
-steps:
-- name: maven:3-jdk-8
+# build the Java app and package it into a jar
+- name: maven:3-jdk-11
   entrypoint: mvn
-  args: ['install']
-
+  args: ["package", "-Dmaven.test.skip=true"]
+# use the Dockerfile to create a container image
+- name: gcr.io/cloud-builders/docker
+  args: ["build", "-t", "gcr.io/$PROJECT_ID/hello-app", "--build-arg=JAR_FILE=target/hello-app-0.0.1-SNAPSHOT.jar", "."]
+# push the container image to the Registry
+- name: gcr.io/cloud-builders/docker
+  args: ["push", "gcr.io/$PROJECT_ID/hello-app"]
+#deploy to Google Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['run', 'deploy', 'seroter-hello-app', '--image', 'gcr.io/$PROJECT_ID/hello-app', '--region', 'us-east1', '--platform', 'managed']
+images: ["gcr.io/$PROJECT_ID/hello-app"]
   
