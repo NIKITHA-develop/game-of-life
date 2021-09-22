@@ -11,7 +11,7 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
   spec:
   containerConcurrency: 80
-  timeoutSeconds: 300
+  # timeoutSeconds: 300
   containers:
   - image: gcr.io/$PROJECT_ID/game-of-life:1.0
     ports:
