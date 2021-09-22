@@ -1,0 +1,9 @@
+steps:
+- name: google/cloud-sdk:alpine
+  id: Clone repo
+  entrypoint: git
+  args: ['clone', 'https://github.com/prashanth43211/game-of-life.git']
+steps:
+- name: maven:3-jdk-8
+  entrypoint: mvn
+  args: ['install']
