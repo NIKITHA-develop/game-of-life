@@ -8,13 +8,6 @@ steps:
   entrypoint: mvn
   args: ['install']
 steps:
-  # Step 1:
-  - name: 'gcr.io/cloud-builders/mvn'
-    entrypoint: bash
-    args: ['./scripts/build.bash']
-    volumes:
-      - name: 'jar'
-        path: /jar
   # Step 2:
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: bash
