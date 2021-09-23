@@ -1,17 +1,16 @@
 steps:
-# build the Java app and package it into a jar
 - name: maven:3-jdk-8
   entrypoint: mvn
-  args: ["package", "-Dmaven.test.skip=true"]
-# use the Dockerfile to create a container image
-- name: gcr.io/cloud-builders/docker
-  args: ["build", "-t", "gcr.io/$PROJECT_ID/game-of-life", "--build-arg=JAR_FILE=target/game-of-life-1.0-SNAPSHOT.jar", "."]
-# push the container image to the Registry
-- name: gcr.io/cloud-builders/docker
-  args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
-#deploy to Google Cloud Run
+  args: ['install']
+steps:
+  # build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/github.com/{GITHUB_USERNAME}/{REPO_NAME}', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/github.com/{GITHUB_USERNAME}/{REPO_NAME}']
+  # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'game-of-life', '--image', 'gcr.io/$PROJECT_ID/game-of-life', '--region', 'us-east1', '--platform', 'managed', --port='8000', --port='*']
-images: ["gcr.io/$PROJECT_ID/game-of-life"]
-
-  
+  args: ['beta', 'run', 'deploy', '{REPO_NAME}', '--image', 'gcr.io/$PROJECT_ID/github.com/{GITHUB_USERNAME}/{REPO_NAME}', '--region', 'us-central1', '--allow-unauthenticated']
+images:
+- gcr.io/$PROJECT_ID/github.com/{GITHUB_USERNAME}/{REPO_NAME}
