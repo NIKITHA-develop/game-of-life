@@ -11,17 +11,5 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
 #deploy to Google Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  spec:
-  containerConcurrency: 80
-  timeoutSeconds: 300
-  containers:
-  - image: gcr.io/$PROJECT_ID/game-of-life
-    ports:
-    - name: http1
-      containerPort: 8080
-    resources:
-      limits:
-        memory: 256Mi
-        cpu: 1000m
   args: ['beta', 'run', 'deploy', 'game-of-life', '--image', 'gcr.io/$PROJECT_ID/game-of-life', '--region', 'us-east1', '--platform', 'managed', '--allow-unauthenticated', '--port', 8080]
 images: ["gcr.io/$PROJECT_ID/game-of-life"]
