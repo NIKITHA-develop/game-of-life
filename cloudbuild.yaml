@@ -10,7 +10,7 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
 # deploy to Google Cloud Run
-- name: gcr.io/cloud-builders/gcloud
+- name: gcr.io/cloud-builders/gke.deploy
   # args: ["run", "deploy", "--filename=kube.yaml", "--location=us-central1-a", "--cluster=cluster1"]
   args:
       - run
@@ -18,4 +18,3 @@ steps:
       - '--cluster=cluster1'
       - '--location=us-central1-a'
       - '--namespace=$_K8S_NAMESPACE'
-  
