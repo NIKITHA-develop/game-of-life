@@ -10,8 +10,11 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
 #deploy to Google Cloud Run
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'game-of-life', '--image', 'gcr.io/arctic-robot-325810/game-of-life@sha256:562cf1639cad6a519b3c8628ec85825b5ea44ddef1af0e8a70f90224cec9888d', '--region', 'us-east1', '--platform', 'managed', '--allow-unauthenticated']
-images: ["gcr.io/arctic-robot-325810/game-of-life@sha256:562cf1639cad6a519b3c8628ec85825b5ea44ddef1af0e8a70f90224cec9888d"]
-
+#- name: 'gcr.io/cloud-builders/gcloud'
+  - name: "gcr.io/cloud-builders/gke-deploy"
+  args:
+  - run
+  - --filename=kubernetes-resource-file
+  - --location=us-central1-a
+  - --cluster=cluster-1
 
