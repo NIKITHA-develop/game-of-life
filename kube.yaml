@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: test
-        image: gcr.io/arctic-robot-325810/nikitha19:v1
+        image: gcr.io/arctic-robot-325810/game-of-life
         ports:
         - containerPort: 80
         ------
@@ -37,5 +37,5 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: nginx
+    app: game-of-life
   type: LoadBalancer
