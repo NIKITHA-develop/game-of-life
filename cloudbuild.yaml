@@ -13,7 +13,7 @@ steps:
 - name: gcr.io/cloud-builders/gcloud
   # args: ["run", "deploy", "--filename=kube.yaml", "--location=us-central1-a", "--cluster=cluster1"]
   args:
-      - apply
+      - run
       - '--filename=kube.yaml'
       - '--cluster=cluster1'
       - '--location=us-central1-a'
