@@ -11,5 +11,5 @@ steps:
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
 #deploy to Google Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', '$_RUN_APPNAME', '--image', 'gcr.io/$PROJECT_ID/game-of-life', '--region', 'us-east1', '--platform', 'managed', '--allow-unauthenticated',]
+  args: ['run', 'deploy', '$_RUN_APPNAME', '--image', 'gcr.io/$PROJECT_ID/game-of-life', '.', '--region', 'us-east1', '--platform', 'managed', '--allow-unauthenticated',]
 images: ["gcr.io/$PROJECT_ID/game-of-life"]
