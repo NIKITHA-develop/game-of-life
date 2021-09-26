@@ -7,7 +7,7 @@ spec:
     type: Recreate
   selector:
     matchLabels:
-      app: nginx
+      app: game-of-life
   replicas: 3 # tells deployment to run 1 pods matching the template
   template: # create pods using pod definition in this template
     metadata:
