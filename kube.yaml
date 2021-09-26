@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: test
-        image: gcr.io/arctic-robot-325810/game-of-life
+        image: gcr.io/arctic-robot-325810/nikitha19
         ports:
         - containerPort: 80
         ------
