@@ -9,12 +9,6 @@ steps:
 # push the container image to the Registry
 - name: gcr.io/cloud-builders/docker
   args: ["push", "gcr.io/$PROJECT_ID/game-of-life"]
-# build to Google Cloud Run
-- name: gcr.io/cloud-builders/gcloud
-  args: ["build", "game-of-life", "--image", "gcr.io/arctic-robot-325810/game-of-life", "--region", "us-central1"]
-  # deploy to Google Cloud Run
-  - name: gcr.io/cloud-builders/gcloud
-    args: ["deploy", "game-of-life", "--image", "gcr.io/arctic-robot-325810/game-of-life", "--region", "us-central1"]
- 
+
       
       
