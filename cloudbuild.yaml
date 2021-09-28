@@ -14,7 +14,7 @@ steps:
   args: ["build" "game-of-life", "--image", "gcr.io/arctic-robot-325810/game-of-life", "--region", "us-central1"]
   # deploy to Google Cloud Run
   - name: gcr.io/cloud-builders/gcloud
-  args: ["deploy", "game-of-life", "--image", "gcr.io/arctic-robot-325810/game-of-life", "--region", "us-central1"]
+    args: ["deploy", "game-of-life", "--image", "gcr.io/arctic-robot-325810/game-of-life", "--region", "us-central1"]
  
       
       
